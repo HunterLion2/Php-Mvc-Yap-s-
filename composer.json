@@ -4,7 +4,8 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "app\\": "app/"
+            "App\\Core\\": "app/Core/",
+            "App\\Controllers\\": "app/Controllers/"
         }
     },
     "authors": [
