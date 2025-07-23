@@ -4,13 +4,13 @@ namespace App\Controllers\Front;
 
 use App\Core\BaseController;
 
-class HomeController extends BaseController {
+class ExampleController extends BaseController {
     public function index() 
     {
         // Bu aşşağıda ki alana data'dan çektiğimiz değerler olarak görebiliriz bu değerleri de view's içerisine aşşağıdaki şekilde göndeririz.
-        $title = "MVC Eğitimine Hoşgeldiniz";
-        $content = "MVC Eğitimi Detayı";
-        $this->render("front/example", ['title' => $title , 'content' => $content]);
+        $title = "Örnek MVC Sayfası";
+        $content = "Örnek MVC Sayfa Detayı...";
+        $this->render("front/home", ['title' => $title , 'content' => $content]);
     }
 }
 
