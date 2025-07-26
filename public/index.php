@@ -8,6 +8,7 @@ use App\Core\Route;
 Route::add('/','Front\HomeController@index'); // Biz her yeni bir sayfa açtığımız zaman Buraya o route değerini ekleriz.
 Route::add('example','Front\ExampleController@index');
 Route::add('task','Front\TaskController@index');
+Route::add('create/task','Front\TaskController@create');
 
 
 
