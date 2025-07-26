@@ -24,6 +24,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/example">Örnek Sayfa</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/task">Task Modülü</a>
+                    </li>
                 </ul>
             </div>
         </div>
