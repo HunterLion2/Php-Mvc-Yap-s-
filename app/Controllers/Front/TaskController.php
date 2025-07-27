@@ -9,19 +9,21 @@ class TaskController extends BaseController
 {
     private $taskModel;
 
-    public function __construct()
-    {
+    public function __construct() {
+
         $this->taskModel = new Task();
+
     }
 
-    public function index()
-    {
+    public function index() {
+
         $tasks = $this->taskModel->getAll();
         $this->render("front/task", ['tasks' => $tasks]);
+
     }
 
-    public function create()
-    {
+    public function create() {
+    
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $title = $_POST['title'] ?? null;
             $description = $_POST['description'] ?? null;
@@ -32,18 +34,21 @@ class TaskController extends BaseController
 
             try {
                 $this->taskModel->create($title, $description);
-                return $this->render('front/create-task', ['success' => "Görev Başarıyla Oluşturuldu"]);
+                return $this->render('front/task', [
+                    'success' => "Görev Başarıyla Oluşturuldu",
+                    'tasks' => $this->taskModel->getAll()
+                ]);
             } catch (\Exception $e) {
-                return $this->render('front/create-task', ['error' => "Görev Oluşturuldu"]);
+                return $this->render('front/create-task', ['error' => "Görev Oluşturulamadı"]);
             }
         } else {
             return $this->render('front/create-task');
         }
+
     }
 
-
-    public function update($id)
-    {
+    public function update($id) {
+    
         $task = $this->taskModel->getById($id);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -81,5 +86,22 @@ class TaskController extends BaseController
                 'task' => $task
             ]);
         }
+
     }
+
+    public function delete($id) {
+        $task = $this->taskModel->getById($id);
+
+        if($this->taskModel->delete($id)) {
+            return $this->render('front/task', [
+                'success' => 'Görev Başarıyla Silindi',
+                'tasks' => $this->taskModel->getAll()
+            ]);
+        } else {
+            return $this->render('front/task', [
+                'error' => 'Görev Silinemedi'
+            ]);
+        }
+    }
+
 }

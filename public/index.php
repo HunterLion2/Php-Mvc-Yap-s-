@@ -10,6 +10,7 @@ Route::add('example','Front\ExampleController@index');
 Route::add('task','Front\TaskController@index');
 Route::add('create/task','Front\TaskController@create');
 Route::add('update/task/{id}','Front\TaskController@update');
+Route::add('delete/task/{id}','Front\TaskController@delete');
 
 
 
