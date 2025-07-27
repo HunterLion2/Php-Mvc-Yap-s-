@@ -20,8 +20,8 @@
                     <td scope="row"><?php echo $task['title']; ?></td>
                     <td scope="row"><?php echo $task['description']; ?></td>
                     <td>
-                        <a href="/edit/task?id=<?php echo $task['id']; ?>" class="btn btn-sm btn-warning">Düzenle</a>
-                        <a href="/delete/task?id=<?php echo $task['id']; ?>" class="btn btn-sm btn-danger">Sil</a>
+                        <a href="/update/task/<?php echo $task['id']; ?>" class="btn btn-sm btn-warning">Düzenle</a>
+                        <a href="/delete/task/id=<?php echo $task['id']; ?>" class="btn btn-sm btn-danger">Sil</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

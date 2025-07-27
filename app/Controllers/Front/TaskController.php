@@ -44,6 +44,8 @@ class TaskController extends BaseController
 
     public function update($id)
     {
+        $task = $this->taskModel->getById($id);
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $title = $_POST['title'] ?? null;
             $description = $_POST['description'] ?? null;
@@ -51,32 +53,31 @@ class TaskController extends BaseController
             if (empty($title) || empty($description)) { // Burada ki empty değerleri içine girilen değerlerin boş olup olmadığına bakar.
                 return $this->render('front/update-task', [
                     'error' => 'Başlık ve Açıklama alanları boş bırakılamaz.',
-                    'id' => $id
+                    'task' => $task
                 ]);
             }
 
             try {
                 $this->taskModel->update($id ,$title, $description);
+                $task = $this->taskModel->getById($id);
                 return $this->render('front/update-task', [
                     'success' => "Görev Başarıyla Güncellendi.",
-                    'id' => $id
+                    'task' => $task
                 ]);
             } catch (\Exception $e) {
                 return $this->render('front/update-task', [
                     'error' => "Görev Güncellemesi Başarısız.",
-                    'id' => $id
+                    'task' => $task
                 ]);
             }
         } else {
-
-            $task = $this->taskModel->getById($id);
 
             if(!$task) {
                 return $this->render('front/update-task', ['error' => 'Görev Bulunamadı']);
             }
 
 
-            return $this->render('front/update-task' . [
+            return $this->render('front/update-task' , [
                 'task' => $task
             ]);
         }
